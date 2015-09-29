@@ -57,4 +57,4 @@ echo "Configuring Atom.."
 HOME_DIR=$HOME/.atom
 mkdir $HOME_DIR
 cp ./atom-config-files/* $HOME_DIR
-echo "    rulesets: $HOME_DIR/phpmd-rules.xml" >> $HOME_DIR/config.cson
+echo "    rulesets: \"$HOME_DIR/phpmd-rules.xml\"" >> $HOME_DIR/config.cson

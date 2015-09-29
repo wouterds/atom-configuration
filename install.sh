@@ -6,9 +6,13 @@ mkdir ./tmp
 echo "Downloading fonts.."
 cd ./tmp
 wget "https://github.com/chrissimpkins/Hack/tree/master/build/ttf/Hack-Bold.ttf" -q
+echo "Downloaded Hack-Bold.ttf ✓"
 wget "https://github.com/chrissimpkins/Hack/tree/master/build/ttf/Hack-BoldItalic.ttf" -q
+echo "Downloaded Hack-BoldItalic.ttf ✓"
 wget "https://github.com/chrissimpkins/Hack/tree/master/build/ttf/Hack-Italic.ttf" -q
+echo "Downloaded Hack-Italic.ttf ✓"
 wget "https://github.com/chrissimpkins/Hack/tree/master/build/ttf/Hack-Regular.ttf" -q
+echo "Downloaded Hack-Regular.ttf ✓"
 cd ..
 
 echo "Installing fonts.."
@@ -36,7 +40,7 @@ if !type "phpmd" >/dev/null 2>/dev/null; then
 	echo "Installing phpmd.."
 	brew install phpmd
 fi
-echo "OK"
+echo "OK ✓"
 
 echo "Checking if Atom installed.."
 if !type "apm" >/dev/null 2>/dev/null; then
@@ -44,7 +48,13 @@ if !type "apm" >/dev/null 2>/dev/null; then
 	open "https://atom.io/"
 	exit 0
 fi
-echo "OK"
+echo "OK ✓"
 
 echo "Installing Atom packages.."
 apm install `cat atom-packages.list`
+
+echo "Configuring Atom.."
+HOME_DIR=$HOME/.atom
+mkdir $HOME_DIR
+mv ./atom-config-files/* $HOME_DIR
+echo "    rulesets: $HOME_DIR/phpmd-rules.xml" >> $HOME_DIR/config.cson

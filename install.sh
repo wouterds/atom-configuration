@@ -19,7 +19,7 @@ sudo chown root:wheel /Library/Fonts/Hack-Italic.ttf
 sudo chown root:wheel /Library/Fonts/Hack-Regular.ttf
 
 echo "Checking if Atom installed.."
-if !type "apmm" >/dev/null 2>/dev/null; then
+if !type "apm" >/dev/null 2>/dev/null; then
 	echo "Please install Atom first!"
 	open "https://atom.io/"
 	exit 0

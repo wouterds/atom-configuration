@@ -56,4 +56,3 @@
     surpressDirectoryArgument: false
   "linter-phpmd":
     executablePath: "/usr/local/bin/phpmd"
-    rulesets: /Users/WouterDS/.atom2/phpmd-rules.xml

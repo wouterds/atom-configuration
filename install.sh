@@ -16,16 +16,16 @@ echo "Downloaded Hack-Regular.ttf ✓"
 cd ..
 
 echo "Installing fonts.."
-sudo mv ./tmp/*.ttf /Library/Fonts/
+mv ./tmp/*.ttf ~/Library/Fonts/
+
+echo "Setting font permissions"
+chmod +x ~/Library/Fonts/Hack-Bold.ttf
+chmod +x ~/Library/Fonts/Hack-BoldItalic.ttf
+chmod +x ~/Library/Fonts/Hack-Italic.ttf
+chmod +x ~/Library/Fonts/Hack-Regular.ttf
 
 echo "Deleting temporary dir.."
 rm -rf ./tmp
-
-echo "Setting font permissions.."
-sudo chown root:wheel /Library/Fonts/Hack-Bold.ttf
-sudo chown root:wheel /Library/Fonts/Hack-BoldItalic.ttf
-sudo chown root:wheel /Library/Fonts/Hack-Italic.ttf
-sudo chown root:wheel /Library/Fonts/Hack-Regular.ttf
 
 echo "Checking if phpmd is installed.."
 if !type "phpmd" >/dev/null 2>/dev/null; then

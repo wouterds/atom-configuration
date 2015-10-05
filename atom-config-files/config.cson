@@ -1,14 +1,10 @@
 "*":
   editor:
-    fontFamily: "Hack"
-    lineHeight: 1.8
+    lineHeight: 1.7
     showInvisibles: true
     showIndentGuide: true
-    preferredLineLength: 1000
     tabLength: 4
     softTabs: false
-  welcome:
-    showOnStartup: false
   core:
     ignoredNames: [
       ".git"
@@ -37,7 +33,6 @@
     css_convert_quotes: "single"
   "git-blame":
     ignoreWhiteSpaceDiffs: true
-    useCustomUrlTemplateIfStandardRemotesFail: true
   linter:
     ignoredLinterErrors: [
       "scss-lint"
@@ -50,9 +45,9 @@
     align_tags: "no"
   "autocomplete-plus":
     confirmCompletion: "tab and enter"
-  minimap:
-    scrollAnimation: true
   "atom-terminal":
     surpressDirectoryArgument: false
+  "linter-scss-lint":
+    executablePath: "/usr/local/bin/scss-lint"
   "linter-phpmd":
     executablePath: "/usr/local/bin/phpmd"

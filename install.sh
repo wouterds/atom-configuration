@@ -1,31 +1,12 @@
 #!/bin/bash
 
-echo "Creating temporary dir.."
-mkdir ./tmp
-
-echo "Downloading fonts.."
-cd ./tmp
-wget "https://github.com/chrissimpkins/Hack/tree/master/build/ttf/Hack-Bold.ttf" -q
-echo "Downloaded Hack-Bold.ttf"
-wget "https://github.com/chrissimpkins/Hack/tree/master/build/ttf/Hack-BoldItalic.ttf" -q
-echo "Downloaded Hack-BoldItalic.ttf"
-wget "https://github.com/chrissimpkins/Hack/tree/master/build/ttf/Hack-Italic.ttf" -q
-echo "Downloaded Hack-Italic.ttf"
-wget "https://github.com/chrissimpkins/Hack/tree/master/build/ttf/Hack-Regular.ttf" -q
-echo "Downloaded Hack-Regular.ttf"
-cd ..
-
-echo "Installing fonts.."
-mv ./tmp/*.ttf ~/Library/Fonts/
-
-echo "Setting font permissions"
-chmod +x ~/Library/Fonts/Hack-Bold.ttf
-chmod +x ~/Library/Fonts/Hack-BoldItalic.ttf
-chmod +x ~/Library/Fonts/Hack-Italic.ttf
-chmod +x ~/Library/Fonts/Hack-Regular.ttf
-
-echo "Deleting temporary dir.."
-rm -rf ./tmp
+echo "Checking if Atom is installed.."
+if !type "apm" >/dev/null 2>/dev/null; then
+	echo "Please install Atom first!"
+	open "https://atom.io/"
+	exit 0
+fi
+echo "OK"
 
 echo "Checking if phpmd is installed.."
 if !type "phpmd" >/dev/null 2>/dev/null; then
@@ -35,6 +16,11 @@ if !type "phpmd" >/dev/null 2>/dev/null; then
 		echo "Homebrew is not installed, installing"
 		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 		brew doctor
+		brew tap homebrew/dupes
+		brew tap homebrew/versions
+		brew tap homebrew/homebrew-php
+		brew update
+		brew upgrade
 	fi
 
 	echo "Installing phpmd.."
@@ -42,11 +28,9 @@ if !type "phpmd" >/dev/null 2>/dev/null; then
 fi
 echo "OK"
 
-echo "Checking if Atom installed.."
-if !type "apm" >/dev/null 2>/dev/null; then
-	echo "Please install Atom first!"
-	open "https://atom.io/"
-	exit 0
+echo "Checking if scss-lint is installed.."
+if !type "scss-lint" >/dev/null 2>/dev/null; then
+	sudo gem install scss-lint
 fi
 echo "OK"
 
@@ -54,7 +38,7 @@ echo "Installing Atom packages.."
 apm install `cat atom-packages.list`
 
 echo "Configuring Atom.."
-HOME_DIR=$HOME/.atom
+HOME_DIR=$HOME/.atom-script
 mkdir $HOME_DIR
 cp ./atom-config-files/* $HOME_DIR
 echo "    rulesets: \"$HOME_DIR/phpmd-rules.xml\"" >> $HOME_DIR/config.cson

@@ -15,13 +15,12 @@ if !type "phpmd" >/dev/null 2>/dev/null; then
 	if !type "brew" >/dev/null 2>/dev/null; then
 		echo "Homebrew is not installed, installing"
 		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-		brew doctor
-		brew tap homebrew/dupes
-		brew tap homebrew/versions
-		brew tap homebrew/homebrew-php
-		brew update
-		brew upgrade
 	fi
+
+	brew doctor
+	brew tap homebrew/dupes
+	brew tap homebrew/versions
+	brew tap homebrew/homebrew-php
 
 	echo "Installing phpmd.."
 	brew install phpmd

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Checking if Atom is installed.."
-if `which apm >/dev/null 2>/dev/null`; then
+if ! `which apm >/dev/null 2>/dev/null`; then
 	echo "Please install Atom first!"
 	open "https://atom.io/"
 	exit 0
@@ -9,10 +9,10 @@ fi
 echo "OK"
 
 echo "Checking if phpmd is installed.."
-if `which phpmd >/dev/null 2>/dev/null`; then
+if ! `which phpmd >/dev/null 2>/dev/null`; then
 	echo "Not installed.. Checking if homebrew is installed.."
 
-	if `which brew >/dev/null 2>/dev/null`; then
+	if ! `which brew >/dev/null 2>/dev/null`; then
 		echo "Homebrew is not installed, installing"
 		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	fi
@@ -28,7 +28,7 @@ fi
 echo "OK"
 
 echo "Checking if scss-lint is installed.."
-if `which scss-lint >/dev/null 2>/dev/null`; then
+if ! `which scss-lint >/dev/null 2>/dev/null`; then
 	sudo gem install scss-lint
 fi
 echo "OK"
